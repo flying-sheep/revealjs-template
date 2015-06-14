@@ -1,3 +1,10 @@
+function replaceAttributes(new_, old) {
+	for (let i=0; i<old.attributes.length; i++) {
+		let attr = old.attributes[i]
+		new_.setAttribute(attr.name, attr.value)
+	}
+}
+
 /** embed SVGs via data-src
  * e.g. <svg data-src="images/test.svg"></svg>.
  * Useful for styling and using class="fragment" in SVG code
@@ -10,11 +17,16 @@ export default function loadDataSrcSVG() {
 		.then(svgCode => {
 			let svgDoc = new DOMParser().parseFromString(svgCode, 'image/svg+xml')
 			let newSVG = svgDoc.documentElement
-			for (let i=0; i<svg.attributes.length; i++) {
-				let attr = svg.attributes[i]
-				newSVG.setAttribute(attr.name, attr.value)
-			}
+			replaceAttributes(newSVG, svg)
 			svg.parentNode.replaceChild(newSVG, svg)
+		})
+		.catch(error => {
+			if (!(error instanceof TypeError))
+				throw error
+			let img = document.createElement('img')
+			img.setAttribute('src', svg.getAttribute('data-src'))
+			replaceAttributes(img, svg)
+			svg.parentNode.replaceChild(img, svg)
 		}))
 	
 	Promise.all(loadSVGs).then(val => {
