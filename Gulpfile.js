@@ -44,3 +44,4 @@ gulp.task('connect', function() {
 })
 
 gulp.task('default', ['watch', 'connect'])
+gulp.task('build', ['js', 'sass'])
