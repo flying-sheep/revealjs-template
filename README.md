@@ -27,9 +27,9 @@ So just download a .tar.gz or .zip, as you’re not going to want to keep up wit
 Then extract it to somewhere, go there, and…
 
 ```console
-$ # Install deps
+# Install deps
 $ npm install
-$ # Launch the dev server
+# Launch the dev server
 $ gulp
 ```
 
