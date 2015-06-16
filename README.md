@@ -24,6 +24,17 @@ This thing isn’t going to change much, and mainly a starting point, unlike Rev
 
 So just download a .tar.gz or .zip, as you’re not going to want to keep up with upstream changes (again, unlike Reveal.js).
 
+Then extract it to somewhere, go there, and…
+
+```console
+$ # Install deps
+$ npm install
+$ # Launch the dev server
+$ gulp
+```
+
+Look at what the output tells you: There will a server be running (usually on http://localhost:8888) with your presentation. Any changes to the source files will trigger a reload of the presentation (you’ll stay on the current slide of course).
+
 More features!
 --------------
 
